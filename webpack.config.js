@@ -52,7 +52,7 @@ var getConfig = function () {
 	  } catch (err) {
 	    // create file with defaults if not found
 	    config = {
-	      'LOCAL_OWA_FOLDER': '/home/sims01/openmrs/openmrs-server/owa/',
+	      'LOCAL_OWA_FOLDER': '/Users/fortuneekeruo/.OpenMRS/owa/',
 	      'APP_ENTRY_POINT': 'http://localhost:8080/openmrs/owa/cohortbuilder/index.html'
 	    };
 
@@ -142,14 +142,14 @@ var webpackConfig = {
 	  app : `${__dirname}/app/js/cohortbuilder`,
 	  css: `${__dirname}/app/css/cohortbuilder.css`,
 	  vendor : [
-	        	
-	        	
-                
+
+
+
                     'react', 'react-router'
-                    
+
                         , 'redux', 'redux-promise-middleware', 'redux-thunk', 'react-redux'
-                    
-                
+
+
 	            ]
   },
   devtool: devtool,

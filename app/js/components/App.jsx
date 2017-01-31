@@ -15,7 +15,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world</h1>
+        <h1>Hello Beautiful People.</h1>
+        <p>God bless us all. Amen!</p>
       </div>
     )
   }
