@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, IndexLink } from 'react-router';
 
 const Header = () => {
   return (
@@ -8,7 +9,12 @@ const Header = () => {
           <img src="img/openmrs-with-title-small.png"/>
         </a>
       </div>
-      <span className="app-title">CohortBuilder</span>
+
+      <ul className="navbar-right nav-header">
+        <li role="presentation" className="active">
+        <a href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
+        </li>
+      </ul>
     </header>
   );
 };
