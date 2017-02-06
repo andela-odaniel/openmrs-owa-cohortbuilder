@@ -11,11 +11,11 @@
  */
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, Route, hashHistory} from 'react-router'
-import {Provider} from 'react-redux'
+import {Router, Route, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
 
-import createStore from './redux-store'
-import routes from './routes'
+import createStore from './redux-store';
+import routes from './routes';
 
 let store = createStore();
 
