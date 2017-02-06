@@ -50,7 +50,7 @@
     "watch": "webpack --progress --colors --watch --mode=deploy --target=web",
     "test": "echo \"Error: no test specified\"",
     "lint": "node_modules/.bin/esw webpack.config.* app",
-    "lint:watch": "yarn run lint -- --watch"
+    "lint:watch": "npm run lint -- --watch"
   },
   "keywords": [
     "OpenMRS",
