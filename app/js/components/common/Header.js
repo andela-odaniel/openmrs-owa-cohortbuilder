@@ -13,7 +13,7 @@ const Header = () => {
       <ul className="navbar-right nav-header">
         <Link to="" activeClassName="active">
           <li role="presentation" className="dropdown">
-            <a id="icon" className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span className="glyphicon glyphicon-user"></span> User <span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
@@ -24,7 +24,7 @@ const Header = () => {
 
         <Link to="" activeClassName="active">
           <li role="presentation" className="dropdown">
-            <a d="icon" className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span className="glyphicon glyphicon glyphicon-map-marker"></span> Inpatient ward <span className="caret"></span>
             </a>
             <ul className="dropdown-menu">
@@ -42,7 +42,7 @@ const Header = () => {
 
         <Link to="" activeClassName="active">
           <li role="presentation">
-            <a id="icon" href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
+            <a href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
           </li>
         </Link>
       </ul>

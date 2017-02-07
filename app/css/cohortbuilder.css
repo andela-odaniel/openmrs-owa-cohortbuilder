@@ -108,7 +108,3 @@ li>a:hover {
 a:hover {
   text-decoration: none;
 }
-
-.active:visited {
-  color: #eeeeee;
-}
