@@ -11,27 +11,40 @@ const Header = () => {
       </div>
 
       <ul className="navbar-right nav-header">
-        <li role="presentation" activeClassName="active" className="dropdown">
-          <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <span className="glyphicon glyphicon-user"></span> User <span className="caret"></span>
-          </a>
-          <ul className="dropdown-menu">
-            <li><a href="#">My Account</a></li>
-          </ul>
-        </li>
-        <li role="presentation" activeClassName="active" className="dropdown">
-          <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <span className="glyphicon glyphicon glyphicon-map-marker"></span> Impatient ward <span className="caret"></span>
-          </a>
-          <ul className="dropdown-menu">
-            <li>
-              <a href="#">Impatient ward</a>
-            </li>
-          </ul>
-        </li>
-        <li role="presentation" className="active">
-          <a href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
-        </li>
+        <Link to="" activeClassName="active">
+          <li role="presentation" className="dropdown">
+            <a id="icon" className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <span className="glyphicon glyphicon-user"></span> User <span className="caret"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <li><a href="#">My Account</a></li>
+            </ul>
+          </li>
+        </Link>
+
+        <Link to="" activeClassName="active">
+          <li role="presentation" className="dropdown">
+            <a d="icon" className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <span className="glyphicon glyphicon glyphicon-map-marker"></span> Inpatient ward <span className="caret"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <li>
+                <a href="#">Inpatient ward</a>
+                <a href="#">Isolation ward</a>
+                <a href="#">Laboratory</a>
+                <a href="#">Outpatient Clinic</a>
+                <a href="#">Pharmacy</a>
+                <a href="#">Registration desk</a>
+              </li>
+            </ul>
+          </li>
+        </Link>
+
+        <Link to="" activeClassName="active">
+          <li role="presentation">
+            <a id="icon" href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
+          </li>
+        </Link>
       </ul>
     </header>
   );
