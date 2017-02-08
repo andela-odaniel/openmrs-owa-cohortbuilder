@@ -17,7 +17,9 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <h1>Hello, world</h1>
+        <div id="body-wrapper">
+          <h1>Hello, world</h1>
+        </div>
       </div>
     );
   }

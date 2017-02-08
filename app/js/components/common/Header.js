@@ -12,27 +12,33 @@ const Header = () => {
 
       <ul className="navbar-right nav-header">
         <Link to="" activeClassName="active">
-          <li role="presentation" className="dropdown">
+          <li className="dropdown">
             <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span className="glyphicon glyphicon-user"></span> User <span className="caret"></span>
             </a>
-            <ul className="dropdown-menu">
+            <ul className="dropdown-menu user">
               <li><a href="#">My Account</a></li>
             </ul>
           </li>
         </Link>
 
         <Link to="" activeClassName="active">
-          <li role="presentation" className="dropdown">
+          <li className="dropdown dropdown-large">
             <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <span className="glyphicon glyphicon glyphicon-map-marker"></span> Inpatient ward <span className="caret"></span>
             </a>
-            <ul className="dropdown-menu">
-              <li>
-                <a href="#">Inpatient ward</a>
-                <a href="#">Isolation ward</a>
+            <ul className="dropdown-menu dropdown-menu-large row">
+              <li className="col-sm-3">
+                  <a href="#">Inpatient ward</a>
+                  <a href="#">Isolation ward</a>
+              </li>
+
+              <li className="col-sm-3">
                 <a href="#">Laboratory</a>
                 <a href="#">Outpatient Clinic</a>
+              </li>
+
+              <li className="col-sm-3">
                 <a href="#">Pharmacy</a>
                 <a href="#">Registration desk</a>
               </li>
@@ -41,7 +47,7 @@ const Header = () => {
         </Link>
 
         <Link to="" activeClassName="active">
-          <li role="presentation">
+          <li>
             <a href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
           </li>
         </Link>
