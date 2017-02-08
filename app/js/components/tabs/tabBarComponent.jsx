@@ -1,22 +1,18 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
-export default class TabBarComponent extends React.Component{
-    render(){
+const TabBarComponent = (props) => {
         return (
             <div className="tab-bar">
                 <ul className="nav nav-tabs">
-                    {this.props.tabs.map(this.drawTabHeader)}
+                    {props.tabs.map(props.drawTabHeader)}
                 </ul>
             </div>
         );
-    }
-    drawTabHeader(tab,index){
-        return (
-            <li key={index} className={tab.active ? 'active' : ""}><a data-toggle="tab" href={"#"+tab.divId}>{tab.name}</a></li>
-        )
-    }
 }
 
 TabBarComponent.propTypes = {
-    tabs: React.PropTypes.array.isRequired
+    tabs: PropTypes.array.isRequired,
+    drawTabHeader: PropTypes.func.isRequired
 }
+
+export default TabBarComponent;

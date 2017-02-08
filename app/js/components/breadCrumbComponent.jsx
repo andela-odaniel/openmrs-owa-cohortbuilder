@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router';
 
-export default class BreadCrumbComponent extends React.Component{
+class BreadCrumbComponent extends Component{
     render(){
         return (
             <div className="breadcrumb">
@@ -14,3 +14,5 @@ export default class BreadCrumbComponent extends React.Component{
         );
     }
 }
+
+export default BreadCrumbComponent;

@@ -9,11 +9,11 @@
  * under the License.
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-import React from 'react';
+import React, {Component} from 'react';
 import PageComponent from './pageComponent';
 import BreadCrumbComponent from './breadCrumbComponent';
 
-export default class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>
@@ -23,3 +23,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App;

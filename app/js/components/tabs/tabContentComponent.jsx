@@ -1,22 +1,16 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default class TabContentComponent extends React.Component{
-    render(){
-        return (
+const TabContentComponent = (props) => {
+     return (
             <div className="tab-content">
-                {this.props.tabs.map(this.drawComponent)}
+                {props.tabs.map(props.drawComponent)}
             </div>
         );
-    }
-    drawComponent(tab,index){
-        return(
-            <div id={tab.divId} key={index} className={'tab-pane ' + (tab.active ? 'active' : '')}>
-                <tab.component/>
-            </div>
-        );
-    }
 };
 
 TabContentComponent.propTypes = {
-    tabs: React.PropTypes.array.isRequired
+    tabs: PropTypes.array.isRequired,
+    drawComponent: PropTypes.func.isRequired
 }
+
+export default TabContentComponent;

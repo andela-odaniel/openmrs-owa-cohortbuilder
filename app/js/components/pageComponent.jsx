@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import BreadCrumbComponent from './breadCrumbComponent';
 import TabsComponent from './tabs/tabsComponent';
 
-export default class PageComponent extends React.Component{
+class PageComponent extends Component{
     render(){
         return(
             <div className="body-wrapper">
@@ -11,3 +11,5 @@ export default class PageComponent extends React.Component{
         );
     }
 };
+
+export default PageComponent;
