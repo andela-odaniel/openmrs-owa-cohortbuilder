@@ -10,12 +10,15 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 import React from 'react';
+import PageComponent from './pageComponent';
+import BreadCrumbComponent from './breadCrumbComponent';
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world</h1>
+        <BreadCrumbComponent />
+        <PageComponent />
       </div>
     )
   }
