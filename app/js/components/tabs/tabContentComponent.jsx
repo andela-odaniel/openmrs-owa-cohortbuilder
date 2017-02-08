@@ -10,7 +10,7 @@ export default class TabContentComponent extends React.Component{
     }
     drawComponent(tab,index){
         return(
-            <div id={tab.divId} key={index} className={'tab-pane fade in ' + (tab.active ? 'active' : '')}>
+            <div id={tab.divId} key={index} className={'tab-pane ' + (tab.active ? 'active' : '')}>
                 <tab.component/>
             </div>
         );

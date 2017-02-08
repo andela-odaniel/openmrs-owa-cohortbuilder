@@ -3,16 +3,8 @@ ul.nav-tabs {
 }
 
 ul.nav-tabs>li {
-    flex: 1;
     flex-grow: 1;
     text-align: center;
-}
-
-.nav-tabs>li.active>a,
-.nav-tabs>li.active:hover>a,
-.nav-tabs>li:hover>a {
-    background-color: #00463f;
-    color: #fff;
 }
 
 .nav-tabs>li>a {
@@ -20,4 +12,12 @@ ul.nav-tabs>li {
     color: #363463;
     background-color: #cccccc;
     height: 100%;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active:hover>a,
+.nav-tabs>li.active:focus>a,
+.nav-tabs>li:hover>a {
+    background-color: #00463f !important;
+    color: #fff !important;
 }
