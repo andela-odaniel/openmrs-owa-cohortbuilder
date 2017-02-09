@@ -22,7 +22,7 @@ class App extends Component {
         <BreadCrumbComponent />
         <PageComponent />
       </div>
-    )
+    );
   }
 }
 

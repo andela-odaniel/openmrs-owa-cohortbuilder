@@ -31,13 +31,13 @@ const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
 const THIS_APP_ID = 'cohortbuilder';
 
-var plugins = [];
+let plugins = [];
 const nodeModules = {};
 
 let outputFile = `.bundle`;
 let outputPath;
 
-var configJson;
+let configJson;
 let appEntryPoint;
 let localOwaFolder;
 
