@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
 
+
+
 const Header = () => {
     return (
         <header>
@@ -14,9 +16,9 @@ const Header = () => {
                 <Link to="" activeClassName="active">
                     <li className="dropdown">
                         <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span className="glyphicon glyphicon-user"></span>
+                            <span className="glyphicon glyphicon-user" />
                             User
-                            <span className="caret"></span>
+                            <span className="caret"/>
                         </a>
                         <ul className="dropdown-menu user">
                             <li>
@@ -29,15 +31,11 @@ const Header = () => {
                 <Link to="" activeClassName="active">
                     <li className="dropdown dropdown-large">
                         <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span className="glyphicon glyphicon glyphicon-map-marker"></span>
+                            <span className="glyphicon glyphicon glyphicon-map-marker"/>
                             Inpatient ward
-                            <span className="caret"></span>
+                            <span className="caret"/>
                         </a>
                         <ul className="dropdown-menu dropdown-menu-large row">
-                            <li className="col-sm-3">
-                                <a href="#">Inpatient ward</a>
-                                <a href="#">Isolation ward</a>
-                            </li>
 
                             <li className="col-sm-3">
                                 <a href="#">Laboratory</a>
@@ -55,7 +53,7 @@ const Header = () => {
                 <Link to="" activeClassName="active">
                     <li>
                         <a href="#">Logout
-                            <span className="glyphicon glyphicon-log-out"></span>
+                            <span className="glyphicon glyphicon-log-out"/>
                         </a>
                     </li>
                 </Link>
@@ -65,3 +63,21 @@ const Header = () => {
 };
 
 export default Header;
+
+Header.drawList = function(){
+  const dropdownMenus = {
+    column1: [
+      'Inpatient ward',
+      'Isolation ward'
+    ],
+    column2: [
+      'Laboratory',
+      'Outpatient Clinic',
+    ],
+    column3: [
+      'Pharmacy',
+      'Registration desk'
+    ]
+  };
+  return dropdownMenus.map((item) => {console.log(item);});
+};
