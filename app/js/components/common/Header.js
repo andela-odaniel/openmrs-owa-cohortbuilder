@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
 const Header = () => {
+  // Dropdown data to be displayed
   const dropdownData = [
     'Inpatient ward',
     'Isolation ward',
@@ -11,6 +12,7 @@ const Header = () => {
     'Registration desk'
   ];
 
+  // Renders the menu data in columns of three and rows determined by dropdownData.length
   const dropFunc = () => {
     const menuDisplay = [];
     const numPerColumn = Math.ceil(dropdownData.length / 3);
@@ -54,7 +56,7 @@ const Header = () => {
               <span className="glyphicon glyphicon glyphicon-map-marker" /> Inpatient ward <span className="caret" />
             </a>
             <ul className="dropdown-menu dropdown-menu-large row">
-              {/**/}
+              {/*Execute the function*/}
               {dropFunc()}
             </ul>
           </li>
