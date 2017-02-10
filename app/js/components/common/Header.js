@@ -2,6 +2,32 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
 const Header = () => {
+  const dropdownData = [
+    'Inpatient ward',
+    'Isolation ward',
+    'Laboratory',
+    'Outpatient Clinic',
+    'Pharmacy',
+    'Registration desk'
+  ];
+
+  const dropFunc = () => {
+    const menuDisplay = [];
+    const numPerColumn = Math.ceil(dropdownData.length / 3);
+    const numOfColumns = 3;
+    for(let cols = 0; cols < numOfColumns; cols++) {
+      const menuInColumns = [];
+      let colStart = cols * numPerColumn;
+      let colEnd = (cols+1) * numPerColumn;
+      for(let menuIndex = colStart; menuIndex < colEnd; menuIndex++) {
+        menuInColumns.push(<a href="#" key={menuIndex}>{dropdownData[menuIndex]}</a>);
+      }
+      menuDisplay.push(<li className="col-sm-4" key={cols}>{menuInColumns}</li>);
+    }
+
+    return menuDisplay;
+  };
+
   return (
     <header>
       <div className="logo">
@@ -14,7 +40,7 @@ const Header = () => {
         <Link to="" activeClassName="active">
           <li className="dropdown">
             <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              <span className="glyphicon glyphicon-user"></span> User <span className="caret"></span>
+              <span className="glyphicon glyphicon-user" /> User <span className="caret" />
             </a>
             <ul className="dropdown-menu user">
               <li><a href="#">My Account</a></li>
@@ -25,35 +51,25 @@ const Header = () => {
         <Link to="" activeClassName="active">
           <li className="dropdown dropdown-large">
             <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              <span className="glyphicon glyphicon glyphicon-map-marker"></span> Inpatient ward <span className="caret"></span>
+              <span className="glyphicon glyphicon glyphicon-map-marker" /> Inpatient ward <span className="caret" />
             </a>
             <ul className="dropdown-menu dropdown-menu-large row">
-              <li className="col-sm-3">
-                  <a href="#">Inpatient ward</a>
-                  <a href="#">Isolation ward</a>
-              </li>
-
-              <li className="col-sm-3">
-                <a href="#">Laboratory</a>
-                <a href="#">Outpatient Clinic</a>
-              </li>
-
-              <li className="col-sm-3">
-                <a href="#">Pharmacy</a>
-                <a href="#">Registration desk</a>
-              </li>
+              {/**/}
+              {dropFunc()}
             </ul>
           </li>
         </Link>
 
         <Link to="" activeClassName="active">
           <li>
-            <a href="#">Logout <span className="glyphicon glyphicon-log-out"></span></a>
+            <a href="#">Logout <span className="glyphicon glyphicon-log-out" /></a>
           </li>
         </Link>
       </ul>
     </header>
   );
 };
+
+
 
 export default Header;
