@@ -1,38 +1,39 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
-const Header = () => {
-  // Dropdown data to be displayed
-  const dropdownData = [
-    'Inpatient ward',
-    'Isolation ward',
-    'Laboratory',
-    'Outpatient Clinic',
-    'Pharmacy',
-    'Registration desk'
-  ];
+const NUMBER_OF_COLUMNS = 3;
 
-  // Renders the menu data in columns of three and rows determined by dropdownData.length
-  const dropFunc = () => {
-    const menuDisplay = [];
-    const numPerColumn = Math.ceil(dropdownData.length / 3);
-    const numOfColumns = 3;
-    for(let cols = 0; cols < numOfColumns; cols++) {
-      const menuInColumns = [];
-      let colStart = cols * numPerColumn;
-      let colEnd = (cols+1) * numPerColumn;
-      for(let menuIndex = colStart; menuIndex < colEnd; menuIndex++) {
-        menuInColumns.push(<a href="#" key={menuIndex}>{dropdownData[menuIndex]}</a>);
-      }
-      menuDisplay.push(<li className="col-sm-4" key={cols}>{menuInColumns}</li>);
+// Dropdown data to be displayed
+const menu = [
+  'Inpatient ward',
+  'Isolation ward',
+  'Laboratory',
+  'Outpatient Clinic',
+  'Pharmacy',
+  'Registration desk'
+];
+
+// Renders the menu data in columns of three and rows determined by menu.length
+export const dropDownMenu = () => {
+  const menuDisplay = [];
+  const numPerColumn = Math.ceil(menu.length / NUMBER_OF_COLUMNS);
+  for(let cols = 0; cols < NUMBER_OF_COLUMNS; cols++) {
+    const menuInColumns = [];
+    let colStart = cols * numPerColumn;
+    let colEnd = (cols+1) * numPerColumn;
+    for(let menuIndex = colStart; menuIndex < colEnd; menuIndex++) {
+      menuInColumns.push(<a href="#" key={menuIndex}>{menu[menuIndex]}</a>);
     }
+    menuDisplay.push(<li className="col-sm-4" key={cols}>{menuInColumns}</li>);
+  }
 
-    return menuDisplay;
-  };
+  return menuDisplay;
+};
 
+export const Header = () => {
   return (
     <header>
-      <div className="logo">
+      <div className="logo" id="logoId">
         <a href="../../">
           <img src="img/openmrs-with-title-small.png"/>
         </a>
@@ -56,8 +57,7 @@ const Header = () => {
               <span className="glyphicon glyphicon glyphicon-map-marker" /> Inpatient ward <span className="caret" />
             </a>
             <ul className="dropdown-menu dropdown-menu-large row">
-              {/*Execute the function*/}
-              {dropFunc()}
+              {dropDownMenu()}
             </ul>
           </li>
         </Link>
@@ -71,7 +71,3 @@ const Header = () => {
     </header>
   );
 };
-
-
-
-export default Header;

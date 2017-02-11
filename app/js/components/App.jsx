@@ -10,17 +10,17 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 import React from 'react';
-import Header from './common/Header';
+import { Header } from './common/Header';
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <div id="body-wrapper">
-          <h1>Hello, world</h1>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Header/>
+                <div id="body-wrapper">
+                    <h1>Hello, world</h1>
+                </div>
+            </div>
+        );
+    }
 }
