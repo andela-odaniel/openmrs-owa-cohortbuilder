@@ -57,7 +57,6 @@ export const Header = () => {
               <span className="glyphicon glyphicon glyphicon-map-marker" /> Inpatient ward <span className="caret" />
             </a>
             <ul className="dropdown-menu dropdown-menu-large row">
-              {/*Execute the function*/}
               {dropDownMenu()}
             </ul>
           </li>
