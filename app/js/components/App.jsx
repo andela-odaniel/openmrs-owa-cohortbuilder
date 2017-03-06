@@ -15,7 +15,6 @@ import PageComponent from './page/pageComponent';
 import BreadCrumbComponent from './breadCrumb/breadCrumbComponent';
 
 class App extends Component {
-    componentDidMount() {}
 
     render() {
         return (
