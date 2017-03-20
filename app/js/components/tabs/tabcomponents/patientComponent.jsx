@@ -4,8 +4,10 @@ import {ApiHelper} from '../../../helpers/apiHelper';
 class PatientComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = { patientAttributes: []};
+        this.state = { patientAttributes: [], searchResults: []};
+        this.searchDemographics = this.searchDemographics.bind(this);
     }
+
     componentDidMount(props) {
         this.props.fetchData('/personattributetype').then(data => {
             this.setState({
@@ -13,6 +15,26 @@ class PatientComponent extends Component {
             });
         });
     }
+
+    searchDemographics(event) {
+        event.preventDefault();
+        const fields = ['gender', 'minage', 'maxage'];
+        const searchParameters = {};
+        fields.forEach((fieldName) => {
+            searchParameters[fieldName] = document.getElementById(fieldName).value;
+        })
+        this.props.search(searchParameters).then(results => {
+            console.log(results);
+            this.setState({searchResults: results.members});
+        });
+    }
+
+    displayResults() {
+        return this.state.searchResults.map((eachResult, index) => 
+            <li key={index}>{`${eachResult.uuid} ${eachResult.links[0].uri}`}</li>
+        );
+    }
+
     render() {
         let attributes = this.state.patientAttributes.map((attribute) => {
             return (
@@ -30,8 +52,8 @@ class PatientComponent extends Component {
                     <div className="col-sm-6">
                         <select className="form-control" id="gender" name="gender">
                             <option value="all">All</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="males">Male</option>
+                            <option value="females">Female</option>
                         </select>
                     </div>
                 </div>
@@ -43,11 +65,11 @@ class PatientComponent extends Component {
                          <span className="inline-label">Between:</span>
                     </div>
                     <div className="col-sm-3">
-                        <input className="form-control" />
+                        <input name="minage" id="minage" className="form-control" />
                     </div>
                     <span className="inline-label">And:</span>
                     <div className="col-sm-3">
-                        <input className="form-control" />
+                        <input name="maxage" id="maxage" className="form-control" />
                     </div>
                 </div>
 
@@ -81,7 +103,7 @@ class PatientComponent extends Component {
                 
                 <div className="form-group">
                     <div className="col-sm-offset-2 col-sm-6">
-                        <button type="submit" className="btn btn-success">Search</button>
+                        <button type="submit" onClick={this.searchDemographics} className="btn btn-success">Search</button>
                     </div>
                 </div>
             </form>
@@ -108,6 +130,10 @@ class PatientComponent extends Component {
                     </div>
                 </div>
             </form>
+
+            <div className="result">
+                {this.displayResults()}
+            </div>
         </div>
     );
     }
