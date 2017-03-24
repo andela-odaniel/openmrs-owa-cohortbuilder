@@ -36,7 +36,6 @@ class TabsComponent extends Component {
         const xmlHelper = new XmlHelper;
         const apiHelper = new ApiHelper(null);
         const serializedXml = xmlHelper.composeXml(parameters);
-        console.log(serializedXml);
         const searchResult = new Promise(function(resolve, reject) {
             apiHelper.post('reportingrest/cohort', { serializedXml }).then(response => {
                 response.json().then(data => {

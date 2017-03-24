@@ -9,7 +9,6 @@ class PatientComponent extends Component {
             currentPage: 1,
             toDisplay: [],
             totalPage: 0,
-            pagePatients: [],
             perPage: 10
         };
         this.searchDemographics = this.searchDemographics.bind(this);
@@ -26,11 +25,31 @@ class PatientComponent extends Component {
 
     searchDemographics(event) {
         event.preventDefault();
-        const fields = ['gender', 'minage', 'maxage'];
+        const fields = {
+            gender: '',
+            ageRangeOnDate: [
+                {name: 'minAge', dataType: 'int'},
+                {name: 'maxAge', dataType: 'int'}
+            ],
+            bornDuringPeriod: [
+                {name: 'startDate', dataType: 'date'},
+                {name: 'endDate', dataType: 'date'}
+            ]
+        };
         const searchParameters = {};
-        fields.forEach((fieldName) => {
-            searchParameters[fieldName] = document.getElementById(fieldName).value;
-        })
+        for(const eachField in fields) {
+            if(Array.isArray(fields[eachField])) {
+                fields[eachField].forEach((fieldInput, index) => {
+                    fields[eachField][index].value = document.getElementById(fieldInput.name).value
+                    if(fields[eachField][index].value) {
+                        fields[eachField][index].value += (fieldInput.name === 'startDate' || fieldInput.name === 'endDate') ? ' 00:00:00 UTC' : '';
+                    }
+                });
+                searchParameters[eachField] = fields[eachField];
+                continue;
+            }
+            searchParameters[eachField] = document.getElementById(eachField).value;
+        }
         this.props.search(searchParameters).then(results => {
             const allPatients = results.members;
             const pagePatientInfo = this.getPatientDetailsPromises(allPatients, this.state.currentPage);
@@ -100,11 +119,11 @@ class PatientComponent extends Component {
                          <span className="inline-label">Between:</span>
                     </div>
                     <div className="col-sm-3">
-                        <input name="minage" id="minage" className="form-control" />
+                        <input name="minage" id="minAge" className="form-control" />
                     </div>
                     <span className="inline-label">And:</span>
                     <div className="col-sm-3">
-                        <input name="maxage" id="maxage" className="form-control" />
+                        <input name="maxage" id="maxAge" className="form-control" />
                     </div>
                 </div>
 
@@ -115,11 +134,11 @@ class PatientComponent extends Component {
                          <span className="inline-label">Between:</span>
                     </div>
                     <div className="col-sm-3">
-                        <input className="form-control" type="date" name="from-date" id="from-date" />
+                        <input className="form-control" type="date" name="from-date" id="startDate" />
                     </div>
                     <span className="inline-label">And:</span>
                     <div className="col-sm-3">
-                        <input className="form-control" name="to-date" type="date" id="to-date" />
+                        <input className="form-control" name="to-date" type="date" id="endDate" />
                     </div>
                 </div>
 
