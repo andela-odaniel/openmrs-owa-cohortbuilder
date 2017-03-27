@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import shortId from 'shortid';
 
 class PatientComponent extends Component {
     constructor(props) {
@@ -27,6 +28,12 @@ class PatientComponent extends Component {
         event.preventDefault();
         const fields = {
             gender: '',
+            atLeastAgeOnDate: [
+                {name: 'minAge', dataType: 'int'}
+            ],
+            upToAgeOnDate: [
+                {name: 'maxAge', dataType: 'int'}
+            ],
             ageRangeOnDate: [
                 {name: 'minAge', dataType: 'int'},
                 {name: 'maxAge', dataType: 'int'}
@@ -50,13 +57,25 @@ class PatientComponent extends Component {
             }
             searchParameters[eachField] = document.getElementById(eachField).value;
         }
+
+        // remove upToAgeOnDate & atLeastAgeOnDate if both minAge & maxAge was filled
+        if(searchParameters.ageRangeOnDate[0].value && searchParameters.ageRangeOnDate[1].value) {
+            delete searchParameters.atLeastAgeOnDate;
+            delete searchParameters.upToAgeOnDate;
+        } else {
+            // then the ageRangeOnDate should be deleted
+            delete searchParameters.ageRangeOnDate;
+        }
+
         this.props.search(searchParameters).then(results => {
-            const allPatients = results.members;
+            const allPatients = results.rows;
+            console.log(allPatients);
             const pagePatientInfo = this.getPatientDetailsPromises(allPatients, this.state.currentPage);
-            let pagePatientDetails = [];
-            Promise.all(pagePatientInfo).then(patientDetails => {
-                this.setState({toDisplay: patientDetails, searchResults: allPatients, totalPage: Math.ceil(allPatients.length/this.state.perPage)});
-            });
+            this.setState({toDisplay: pagePatientInfo, searchResults: allPatients, totalPage: Math.ceil(allPatients.length/this.state.perPage)});
+            // let pagePatientDetails = [];
+            // Promise.all(pagePatientInfo).then(patientDetails => {
+            //     this.setState({toDisplay: patientDetails, searchResults: allPatients, totalPage: Math.ceil(allPatients.length/this.state.perPage)});
+            // });
         });
     }
 
@@ -69,21 +88,23 @@ class PatientComponent extends Component {
             default: pageToNavigate = (event.target.value === 'next') ? this.state.currentPage+1 : this.state.currentPage-1;
         }
         const pagePatientInfo = this.getPatientDetailsPromises(this.state.searchResults, pageToNavigate);
-        Promise.all(pagePatientInfo).then(patientDetails => {
-            this.setState({ toDisplay: patientDetails, currentPage: pageToNavigate });
-        });
+        this.setState({ toDisplay: pagePatientInfo, currentPage: pageToNavigate });
+        // Promise.all(pagePatientInfo).then(patientDetails => {
+        //     this.setState({ toDisplay: patientDetails, currentPage: pageToNavigate });
+        // });
     }
 
     getPatientDetailsPromises(allPatients, currentPage) {
         const pagePatientInfo = [];
         for(let index = (currentPage-1) * this.state.perPage; index < currentPage * this.state.perPage && index < allPatients.length; index++) {
             pagePatientInfo.push(
-                new Promise((resolve, reject) => {
-                this.props.fetchData(`patient/${allPatients[index].uuid}`)
-                    .then(patientInfo => {
-                        resolve(patientInfo);
-                    });
-                })
+                // new Promise((resolve, reject) => {
+                // this.props.fetchData(`patient/${allPatients[index].uuid}`)
+                //     .then(patientInfo => {
+                //         resolve(patientInfo);
+                //     });
+                // })
+                allPatients[index]
             );
         }
         return pagePatientInfo;
@@ -199,10 +220,10 @@ class PatientComponent extends Component {
                         {
                             this.state.toDisplay.map(patient => {
                                 return (
-                                    <tr key={patient.uuid}>
-                                        <td>{patient.person.display}</td>
-                                        <td>{patient.person.age}</td>
-                                        <td>{patient.person.gender}</td>
+                                    <tr key={shortId.generate()}>
+                                        <td>{`${patient.Firstname} ${patient.Lastname}`}</td>
+                                        <td>{patient.Age}</td>
+                                        <td>{patient.Gender}</td>
                                     </tr>);
                             })
                         }
