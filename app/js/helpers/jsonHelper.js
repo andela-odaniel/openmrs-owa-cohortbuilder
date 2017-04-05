@@ -7,6 +7,7 @@ export class JSONHelper {
     query.rowFilters = [];
     for(let field in searchParameters) {
       if(this.isNullValues(searchParameters[field])) {
+        delete searchParameters[field];
         continue;
       }
       if(searchParameters[field] != 'all' && searchParameters != '') {
@@ -20,7 +21,8 @@ export class JSONHelper {
       counter += 1;
     }
     query.customRowFilterCombination = this.composeFilterCombination(query.rowFilters);
-    return query;
+    const label = this.composeDescription(searchParameters);
+    return {query, label};
   }
 
   isNullValues(fieldValues) {
@@ -88,5 +90,44 @@ export class JSONHelper {
       return aColumn;
     });
     return colValues;
+  }
+  
+  composeDescription(searchParameters) {
+    let definitionKeys = Object.keys(searchParameters);
+    if(definitionKeys.length === 0) {
+      return 'All Patients';
+    } else {
+      let label = '';
+      if (definitionKeys.indexOf('gender') >= 0) {
+        label = this.getGenderName(searchParameters['gender'])+ ' patients';
+        delete searchParameters.gender;
+        definitionKeys = Object.keys(searchParameters);
+      } else {
+        label = 'Patients';
+      }
+      let counter = 0;
+      for(let eachKey in searchParameters) {
+        if(counter === 0) {
+          label += ' with';
+        } else if (counter > 0 && counter < definitionKeys.length-1) {
+          label += ',';
+        } else {
+          label += ' and';
+        }
+        switch(eachKey) {
+          case 'upToAgeOnDate': label += ' maximum age of '+searchParameters[eachKey][0].value +' years'; break;
+          case 'atLeastAgeOnDate': label += ' minimum age of '+searchParameters[eachKey][0].value +' years'; break;
+          case 'ageRangeOnDate': label += ' age between '+searchParameters[eachKey][0].value +' & '+searchParameters[eachKey][1].value+' years'; break; 
+          case 'bornDuringPeriod': label += ' date of birth between '+searchParameters[eachKey][0].value +' & '+searchParameters[eachKey][1].value; break;
+          case 'personWithAttribute': label += ' '+searchParameters[eachKey][0].value+ ' as '+searchParameters[eachKey][1].value; break;
+        }
+        counter++;
+      }
+      return label;
+    }
+  }
+
+  getGenderName(gender) {
+    return gender.charAt(0).toUpperCase()+gender.slice(1, gender.length-1); 
   }
 }
