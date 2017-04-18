@@ -24,6 +24,7 @@ ul.nav-tabs>li {
     background: linear-gradient(top, #ffffff, #dddddd);
     background-color: #dddddd;
     border: #dddddd 1px solid;
+    font-size: 15px;
 }
 
 .nav-tabs>li>a:hover {
@@ -61,6 +62,26 @@ ul.nav-tabs>li {
     display: inline-block
 }
 
+.tab-content .sql-component {
+    width: 70%;
+}
+
+.tab-content .sql-component>.button-div {
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.tab-content .sql-component>.button-div>button {
+    color: #fff;
+    width: 100px;
+}
+
+.tab-content .sql-component>h2.query-warning {
+    font-size: 0.8em;
+    text-align: center;
+}
+
 .inline-label {
     display: block;
     float: left;
@@ -70,4 +91,13 @@ ul.nav-tabs>li {
 
 .patient-status label {
     margin-right: 20px;
+}
+
+.programme-component .inline-label {
+    line-height: 17px;
+    margin-top: 8px;
+}
+
+.encounter-component .submit-btn {
+    text-align: left;
 }
