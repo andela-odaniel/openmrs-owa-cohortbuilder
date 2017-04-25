@@ -91,6 +91,10 @@ export class JSONHelper {
       {
         name: "age",
         key: "ageOnDate.fullYears"
+      },
+      {
+        name: "patientId",
+        key: "patientId"
       }
     ];
 

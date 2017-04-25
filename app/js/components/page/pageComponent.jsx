@@ -40,7 +40,7 @@ class PageComponent extends Component{
             <div id="body-wrapper" className="page-wrapper">
                 <TabsComponent addToHistory={this.addToHistory} />
                 <SearchHistoryComponent history={this.state.history} />
-                <ActionsComponent />
+                <ActionsComponent history={this.state.history} />
             </div>
         );
     }
